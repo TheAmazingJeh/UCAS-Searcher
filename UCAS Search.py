@@ -81,5 +81,25 @@ class UCAS_handler:
 def main():
     # Create UCAS_handler object
     handler = UCAS_handler()
+    # Ask user for University Name
+    handler.uniInput = input("University Name (This will give you a list of matching Universities)\n>>> ")
+    # Search UCAS for the university using search_ucas()
+    uniOptions = handler.search_ucas(handler.uniInput)
+    # Ask user to select the university from the list of options
+    handler.uniName = handler.select_from_list(uniOptions["providers"])
+    # If the user didn't select a university, exit the program
+    if handler.uniName == False: sleep(2); sys.exit()
+    # Ask user for the subject name
+    handler.subjectInput = input("Subject Name (This will give you a list of matching Subjects)\n>>> ")
+    # Search UCAS for the subject using search_ucas()
+    subjectOptions = handler.search_ucas(handler.subjectInput)
+    # Ask user to select the subject from the list of options
+    handler.subjectName = handler.select_from_list(subjectOptions["subjects"])
+    # If the user didn't select a subject, exit the program
+    if handler.subjectName == False: sleep(2); sys.exit()
+
+    # Open the UCAS page for the university and subject
+    handler.open_uni_page(handler.uniName,handler.subjectName)
+
 if __name__ == "__main__":
     main()
