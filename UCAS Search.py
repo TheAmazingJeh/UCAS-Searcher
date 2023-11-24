@@ -4,6 +4,7 @@ from webbrowser import open as open_browser
 from requests.structures import CaseInsensitiveDict
 from time import sleep
 from requests import post as rPost
+
 class UCAS_handler:
     def __init__(self):
         self.uniInput = ""
