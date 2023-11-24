@@ -1,4 +1,8 @@
 import json, sys
+from urllib.parse import urlencode
+from webbrowser import open as open_browser
+from requests.structures import CaseInsensitiveDict
+from time import sleep
 from requests import post as rPost
 class UCAS_handler:
     def __init__(self):
@@ -20,6 +24,30 @@ class UCAS_handler:
 
         data = json.dumps({"searchTerm": searchTerm})
         return dict(rPost(url, headers=headers, data=data).json())
+
+    def open_uni_page(self, NAME,SUBJECTS):    # Opens the UCAS page for the university.
+        """
+        Opens the UCAS page for the university.
+        
+        Requires the exact name of the university and subject to search for. (Use UCAS search to find these)
+        """
+
+        # Create the parameters for the URL
+        params = {
+            # Set the provider name to NAME
+            "providers":NAME,
+            # Set the subject name to SUBJECTS
+            "subjects": SUBJECTS,
+
+            # These parameters are required for the URL to work, assuming you want to search for undergraduate courses starting in 2023
+            "studyYear": "2023",
+            "destination": "Undergraduate",
+            "postcodeDistanceSystem": "imperial",
+            "pageNumber": "1",
+            "sort": "MostRelevant",
+            "clearingPreference": "NextYear"
+        }
+        open_browser(f"https://digital.ucas.com/coursedisplay/results/courses?{urlencode(params)}")
 
     def select_from_list(self, optionList):
         """
