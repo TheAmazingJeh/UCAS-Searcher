@@ -4,11 +4,9 @@ This is a program that can search ucas for a specified university and course, an
 
 ## Installation
 
-Download the zip from [here](https://github.com/TheAmazingJeh/UCAS-Searcher/releases/latest)
+Download the exe from [here](https://github.com/TheAmazingJeh/UCAS-Searcher/releases/latest)
 
-Install the required python libraries in `requirements.txt` using [pip](https://pypi.org/project/pip/)
-
-Run `UCAS Search.py`
+Run `UCAS Search.exe`
 
 
 ## Credits
